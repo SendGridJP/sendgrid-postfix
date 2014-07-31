@@ -4,19 +4,19 @@ sendgrid-postfix
 SMTPリクエストをSendGridにリレーするPostfixサーバです。  
 ほぼデフォルト設定のPostfixに対してsmtp.sendgrid.netに接続する設定だけを加えたものです。  
 
-# 必要条件
+## 必要条件
 git
 Docker 1.0
 
-# ファイルの取得
+## ファイルの取得
 リポジトリからファイルをクローンします。
 ``` bash
 $ git clone https://github.com/SendGridJP/sendgrid-postfix.git
 $ cd sendgrid-postfix
 ```
 
-# 設定変更
-## Postfixの設定変更
+## 設定変更
+### Postfixの設定変更
 Postfixの設定ファイルを編集してSendGridの認証情報を設定します。
 ``` bash
 vi files/etc/postfix/main.cf
@@ -25,7 +25,7 @@ vi files/etc/postfix/main.cf
 smtp_sasl_password_maps = static:SENDGRID_USERNAME:SENDGRID_PASSWORD
 ```
 
-## メールアドレス変更
+### メールアドレス変更
 メール送信テストスクリプトのFromとToを編集します。
 ``` bash
 $ vi files/smtp.sh
@@ -35,13 +35,13 @@ to=recipient@address.com
 from=your@address.com
 ```
 
-# Docker build
+## Docker build
 Dockerをbuildします。
 ``` bash
 $ ./build.sh
 ```
 
-# Docker run
+## Docker run
 コンテナ上でsshdを起動します。  
 ポート設定はDocker環境により異なる場合がありますので、適宜修正してください。  
 同様の内容はrun.shファイルに記述されています。
@@ -49,7 +49,7 @@ $ ./build.sh
 $ docker run -p 49201:22 -p 49202:25 -t sendgridjp/postfix /usr/sbin/sshd -D &
 ```
 
-# コンテナにsshで接続
+## コンテナにsshで接続
 コンテナにsshで接続します。  
 接続先IPアドレスやポート番号はDocker環境により異なる場合がありますので、適宜修正してください。  
 sshのパスワードはDockerfileに記述されている通り"password"です。  
@@ -61,7 +61,7 @@ Last login: Fri Jul 25 21:00:34 2014 from 192.168.59.3
 [ root@1aee76c662af:~ ]$
 ```
 
-# コンテナ上でPostfix起動
+## コンテナ上でPostfix起動
 コンテナ上でPostfixを起動します。  
 ``` bash
 [ root@1aee76c662af:~ ]$ service postfix start
@@ -69,7 +69,7 @@ Last login: Fri Jul 25 21:00:34 2014 from 192.168.59.3
 [ root@1aee76c662af:~ ]$
 ```
 
-# メール送信のテスト
+## メール送信のテスト
 メール送信スクリプトを実行してテストします。  
 最後にステータスコード221が表示されていれば、送信成功です。  
 宛先メールボックスにメールが届いていることを確認してください。  

@@ -90,3 +90,7 @@ Last login: Fri Jul 25 21:00:34 2014 from 192.168.59.3
 250 2.0.0 Ok: queued as 0C42921B
 221 2.0.0 Bye
 ```
+
+## 注意事項
+PostfixはlocalhostからのSMTPリクエストのみ受け付けるようになっています。
+外部ホストからSMTPリクエストを受け付けるようにするためには、Postfixの設定を変更してください。

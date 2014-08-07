@@ -32,9 +32,9 @@ EXPOSE 25
 #
 # install modules
 RUN apt-get install -y telnet postfix 
-ADD files/etc/mailname /etc/mailname
+#ADD files/etc/mailname /etc/mailname
 ADD files/etc/postfix/main.cf /etc/postfix/main.cf
-ADD files/etc/postfix/master.cf /etc/postfix/master.cf
+#ADD files/etc/postfix/master.cf /etc/postfix/master.cf
 
 #
 # add script form sending mail
